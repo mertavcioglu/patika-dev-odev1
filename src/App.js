@@ -1,25 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import axios from "axios";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  async function returnUser(userID) {
+    let userData = await axios(
+      `https://jsonplaceholder.typicode.com/users/${userID}`
+    );
+
+    let userPost = await axios(
+      `https://jsonplaceholder.typicode.com/posts?userId=${userID}`
+    );
+
+    console.log(userData.data, userPost.data);
+  }
+  returnUser(1);
+  return <div>Odev1</div>;
 }
 
 export default App;
